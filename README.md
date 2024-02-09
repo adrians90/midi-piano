@@ -6,5 +6,8 @@ https://javascriptsimplified.com/
 
 When certain keys are pressed a corresponding note is played, like a regular piano
 
+live link :
+https://adrians90.github.io/midi-piano/
+
 
 
