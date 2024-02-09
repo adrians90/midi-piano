@@ -15,8 +15,9 @@ const NOTE_DETAILS = [
 
 document.addEventListener("keydown", e => {
   if(e.repeat) return
-  console.log("Down")
-  console.log(e)
+  const keyboardKey = e.code
+  const noteDetail = getNoteDetail(keyboardKey)
+  console.log(noteDetail)
 })
 
 document.addEventListener("keyup", e => {
@@ -24,4 +25,8 @@ document.addEventListener("keyup", e => {
   console.log("UP")
   console.log(e)
 })
+
+function getNoteDetail(keyboardKey) {
+  return NOTE_DETAILS.find(n => `Key${n.key}` === keyboardKey)
+}
 
