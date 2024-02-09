@@ -17,16 +17,28 @@ document.addEventListener("keydown", e => {
   if(e.repeat) return
   const keyboardKey = e.code
   const noteDetail = getNoteDetail(keyboardKey)
-  console.log(noteDetail)
+  if(noteDetail == null) return
+  noteDetail.active = true
+  playNotes()
+
 })
 
 document.addEventListener("keyup", e => {
-  
-  console.log("UP")
-  console.log(e)
+  const keyboardKey = e.code
+  const noteDetail = getNoteDetail(keyboardKey)
+  if(noteDetail == null) return
+// set noteDetail.active to false when we de-press the key so the note stops playing.
+  noteDetail.active = false
+  playNotes()
 })
 
 function getNoteDetail(keyboardKey) {
   return NOTE_DETAILS.find(n => `Key${n.key}` === keyboardKey)
 }
 
+function playNotes() {
+  NOTE_DETAILS.forEach(n => {
+    const keyElement = document.querySelector(`[data-note="${n.note}"]`)
+    keyElement.classList.toggle("active", n.active)
+  })
+}
